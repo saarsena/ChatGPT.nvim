@@ -1,3 +1,49 @@
+# ChatGPT.nvim (Fork with OpenAI API Compatibility Fixes)
+
+Hey there! This is a fork of [jackMort/ChatGPT.nvim](https://github.com/jackMort/ChatGPT.nvim) where I’ve made some updates to keep up with recent OpenAI API changes.
+
+### Why this fork?
+
+The original plugin is awesome but hasn’t yet caught up with some breaking changes in the OpenAI API—things like:
+
+- Switching from `max_tokens` to `max_completion_tokens`
+- Dropping unsupported params like `top_p` for certain models
+- Fixing compatibility with custom or restricted models like `o4-mini-2025-04-16`
+
+Without these tweaks, the plugin throws errors and just won’t work with newer API versions or models.
+
+### What’s different here?
+
+This fork:
+
+- Smooths over those rough edges so you can use the plugin hassle-free
+- Lets you run your favorite models without getting blocked by API param mismatches
+- Is ready to use right now without waiting for official updates
+
+### How to use this fork
+
+Just update your Neovim plugin setup to point here instead of the original repo, for example:
+
+```lua
+{
+  "saarsena/ChatGPT.nvim",
+  config = function()
+    require("chatgpt").setup({
+      openai_params = {
+        model = "o4-mini-2025-04-16",
+        max_completion_tokens = 4095,
+        temperature = 0.2,
+      }
+    })
+  end,
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    "nvim-lua/plenary.nvim",
+    "folke/trouble.nvim",
+    "nvim-telescope/telescope.nvim",
+  },
+}
+---
 # ChatGPT.nvim
 
 ![GitHub Workflow Status](http://img.shields.io/github/actions/workflow/status/jackMort/ChatGPT.nvim/default.yml?branch=main&style=for-the-badge)
